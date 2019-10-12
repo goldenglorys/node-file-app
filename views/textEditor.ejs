@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 mt-3 bg-success">
+				<form action="/sendFile" method="post">
+					<h4 class="text-center">Text Editor</h4>
+					<textarea name="text" class="form-control" cols="10" rows="8" style="resize: none;"></textarea><br>
+					<input type="text" name="save" class="form-control" placeholder="Save file as"><br>
+					<input type="submit" class="btn btn-dark mb-2 offset-4" name="">
+				</form>
+			</div>
+			<div class="col-md-4 mt-3 bg-secondary">
+				<form action="/readFile" method="post">
+					<h4 class="text-center">File to Render</h4>
+					<select class="form-control" name="readName">
+						<option>Choose a file to render</option>
+						<% var files %>
+						<% var file = JSON.stringify(files) %>
+						<% var file2 = JSON.parse(file) %>
+						<% for(i=0; i < file2.length; i++){%>
+							<option value="<%= file2[i] %>"><%= file2[i] %></option>
+						<% }%>
+					</select>
+					<input type="submit" class="btn btn-dark mb-2 offset-4">
+				</form>
+			</div>
+			<div class="col-md-4 mt-3 bg-info">
+				<h4 class="text-center">File to Render</h4>
+				<% var data %>
+				<%= data %>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+</html>
